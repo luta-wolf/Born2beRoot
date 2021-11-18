@@ -179,10 +179,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 - // удалить пользователя из группы
 - gpasswd -d <you_user> <you_group>
 
-ЧАСТЬ III
-
-ЧАСТЬ III
-
+ЧАСТЬ III 
 СКРИПТ
 
 СОЗДАНИЕ СКРИПТА
@@ -197,7 +194,7 @@ $nano monitoring.sh
 // скрипт c командами файле monitoring.sh
 
 
-	НАСТРОЙКА CRON
+НАСТРОЙКА CRON
 - // добавляем скрипт в расписание (кадые 10 мин)
 - $crontab -e
 - */10 * * * *  /usr/local/bin/monitoring.sh
