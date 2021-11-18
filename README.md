@@ -184,14 +184,14 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 
 СОЗДАНИЕ СКРИПТА
 
-// для утилиты netstat
-$apt install net-tools
-$su -
-$cd /usr/local/bin/
-$touch monitoring.sh
-$chmod +x ./monitoring.sh
-$nano monitoring.sh
-// скрипт c командами файле monitoring.sh
+- // для утилиты netstat
+- $apt install net-tools
+- $su -
+- $cd /usr/local/bin/
+- $touch monitoring.sh
+- $chmod +x ./monitoring.sh
+- $nano monitoring.sh
+- // скрипт c командами файле monitoring.sh
 
 
 НАСТРОЙКА CRON
