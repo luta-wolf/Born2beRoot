@@ -181,19 +181,26 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 
 ЧАСТЬ III
 
-Crontab
+ЧАСТЬ III
 
-#!/bin/bash
-wall $'#Architecture:' `uname -a` \
-$'\n#CPU physical : '`nproc` \
-$'\n#vCPU :' `cat /proc/cpuinfo | grep processor | wc -l` \
-$'\n#Memory Usage:' `free -m | grep Mem | awk '{printf "%d/%d (%.1f%%)", $3, $2, $3*100/$2}'` \
-$'\n#Disk Usage: '`df -h | grep root | awk '{print $3"/"$2" ("$5")"}'` \
-$'\n#CPU load: '`cat /proc/loadavg | awk '{printf "%.1f%%", $1}'` \
-$'\n#Last boot:' `who -b | awk '{print $3" "$4}'` \
-$'\n#LVM use:' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \
-$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` "ESTABLISHED" \
-$'\n#User log:' `who | wc -l` \
-$'\nNetwork: IP' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \
-$'\n#Sudo :' `cat /var/log/sudo/sudo.log | grep COMMAND | wc -l` "cmd"
+СКРИПТ
 
+СОЗДАНИЕ СКРИПТА
+
+// для утилиты netstat
+$apt install net-tools
+$su -
+$cd /usr/local/bin/
+$touch monitoring.sh
+$chmod +x ./monitoring.sh
+$nano monitoring.sh
+// скрипт c командами файле monitoring.sh
+
+
+	НАСТРОЙКА CRON
+- // добавляем скрипт в расписание (кадые 10 мин)
+- $crontab -e
+- */10 * * * *  /usr/local/bin/monitoring.sh
+- // если чере 30 сек то
+- #* * * * * /usr/local/bin/monitoring.sh
+- #* * * * * ( sleep 30 ; /usr/local/bin/monitoring.sh )
