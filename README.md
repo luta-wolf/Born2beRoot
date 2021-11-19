@@ -106,51 +106,48 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	$reboot
 
 #### 4.	ДОСТУП ЧЕРЕЗ ТЕРМИНАЛ
-
-- Проброс портов в virtualbox
-- $ssh <user>@localhost -p 4242
-если не получается возможно проблема из-за множества виртуальных машин на которых мы разворачивали систему
-тогда на маке в файле /Users/einterdi/.ssh/known_hosts коментим последине записи наычинающиеся на localhost или 127.0.0.1
+	Проброс портов в virtualbox
+	$ssh <user>@localhost -p 4242
+	если не получается возможно проблема из-за множества виртуальных машин на которых мы разворачивали систему
+	тогда на маке в файле /Users/einterdi/.ssh/known_hosts коментим последине записи наычинающиеся на localhost или 127.0.0.1
 
 
 #### 5.	ФАЙЕРВОЛ
-
-- // устанавливаем ufw
-- $apt install ufw
-- // убеждаемся, что он не работает
-- $ufw status
-- // запускаем файервол
-- $ufw enable
-- // убеждаемся, что он работает
-- $sudo ufw status
-- sudo ufw status numbered
-- // разрешаем наш порт ssh
-- $ufw allow 4242
-- // удаляем порт 22
-- sudo ufw delete (номер строки ненужного порта)
+	// устанавливаем ufw
+	$apt install ufw
+	// убеждаемся, что он не работает
+	$ufw status
+	// запускаем файервол
+	$ufw enable
+	// убеждаемся, что он работает
+	$sudo ufw status
+	sudo ufw status numbered
+	// разрешаем наш порт ssh
+	$ufw allow 4242
+	// удаляем порт 22
+	sudo ufw delete (номер строки ненужного порта)
 
 #### 6.	НАСТРОЙКА ВХОДА ПОД SUDO
-
-- // логинимся под рутом
-- $su -
-- // проверяем группы пользователей
-- $groups root
-- $groups <user>
-- // проверяем и/или меняем имя машины
-- $nano /etc/hostname
-- // проверяем имя хоста
-- $nano /etc/hosts
-- // ещё раз правим конфиг судо
-- $nano /etc/sudoers
-- // меняем фразу при неудачном вводе
-- Defaults  badpass_message="Password is wrong, please try again!Do you understand?"
-- // Устанавливаем количество попыток ввода
-- Defaults        passwd_tries=3
-- // прописываем путь где будет фиксироваться все команды с sudo
-- Defaults        logfile="/var/log/sudo/sudo.log"
-- Defaults        log_input, log_output
-- Defaults        requiret
-- // создаем папку sudo и в ней файл sudo.log
+	// логинимся под рутом
+	$su -
+	// проверяем группы пользователей
+	$groups root
+	$groups <user>
+	// проверяем и/или меняем имя машины
+	$nano /etc/hostname
+	// проверяем имя хоста
+	$nano /etc/hosts
+	// ещё раз правим конфиг судо
+	$nano /etc/sudoers
+	// меняем фразу при неудачном вводе
+	Defaults  badpass_message="Password is wrong, please try again!Do you understand?"
+	// Устанавливаем количество попыток ввода
+	Defaults        passwd_tries=3
+	// прописываем путь где будет фиксироваться все команды с sudo
+	Defaults        logfile="/var/log/sudo/sudo.log"
+	Defaults        log_input, log_output
+	Defaults        requiret
+	// создаем папку sudo и в ней файл sudo.log
 
 #### 7. ПОЛЬЗОВАТЕЛИ
 	// Посмотреть всех пользователей
@@ -228,18 +225,17 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 
 
 #### 3. НАСТРОЙКА CRON
-- // добавляем скрипт в расписание (кадые 10 мин)
-- $crontab -e
-- */10 * * * *  /usr/local/bin/monitoring.sh
-- // если чере 30 сек то
-- #* * * * * /usr/local/bin/monitoring.sh
-- #* * * * * ( sleep 30 ; /usr/local/bin/monitoring.sh )
+	// добавляем скрипт в расписание (кадые 10 мин)
+	$crontab -e
+	*/10 * * * *  /usr/local/bin/monitoring.sh
+	// если чере 30 сек то
+	#* * * * * /usr/local/bin/monitoring.sh
+	#* * * * * ( sleep 30 ; /usr/local/bin/monitoring.sh )
   
   ## ЧАСТЬ IV
-  
   #### ЗАЩИТА
   
- 1) Как работает виртуальная машина.
+1) Как работает виртуальная машина.
 2) Выбор операционки.
 3) Базовые отличия между CentOS и Debian.
 4) Смысл (цель) использования виртуальных машин.
