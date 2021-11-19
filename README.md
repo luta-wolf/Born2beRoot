@@ -1,11 +1,11 @@
-#Born2beRoot
+# Born2beRoot
 
 Сабжект: https://cdn.intra.42.fr/pdf/pdf/31621/en.subject.pdf
 
 Цель проекта - настроить виртуальную машину VirtualBox под управлением Debian или CentOS и реализовать некоторые базовые вещи, такие как ssh и sudo. Скрипт bash, который вы можете увидеть в репозитории, предназначен для отслеживания состояния систем.
 
-##ЧАСТЬ I
-####Виртуальная машина VirtualBox + создаем структуру под бонусную часть:
+## ЧАСТЬ I
+#### Виртуальная машина VirtualBox + создаем структуру под бонусную часть:
 
 Инструкция по VirtualBox:
 - На русском : https://hackware.ru/?p=3727
@@ -50,8 +50,8 @@ GRUB добавляем в главную загрузочную запись.
 
 
 
-##ЧАСТЬ II
-####Создаем root и т.д.
+## ЧАСТЬ II
+#### Создаем root и т.д.
 
 Начало работы:
 - https://baigal.medium.com/born2beroot-e6e26dfb50ac
@@ -65,11 +65,11 @@ GRUB добавляем в главную загрузочную запись.
 	Sudo - это альтернатива su для выполнения команд с правами суперпользователя (root).
 	Cron — это хронологический демон-планировщик задач, работающий в операционных системах типа Unix, включая дистрибутивы Linux.
 
-1. Запускаем ВМ и установиваем sudo.
-Для этого переходим в режим суперпользователя "su -". далее:
-  - apt update
-  - apt upgrade
-  - apt install sudo
+#### 1. Запускаем ВМ и установиваем sudo.
+	Для этого переходим в режим суперпользователя "su -". далее:
+	apt update
+	apt upgrade
+	apt install sudo
 
 
  AppArmor
@@ -77,35 +77,35 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 
 Проверить статус AppArmor sudo apparmor_status или /usr/sbin/aa-status
 
-2.	НАСТРОЙКА SSH
+#### 2.	НАСТРОЙКА SSH
 
-- // правим конфиг ssh
-- $nano /etc/ssh/sshd_config
-- // Меняем строки
-- #Port 22 => Port 4242
-- // чтобы запретить авторизацию от имени суперпользователя
-- #PermitRootLogin prohibit-password => PermitRootLogin no
-- // Проверяем что ssh включен
-- sudo service ssh status
-- systemctl status ssh
+	// правим конфиг ssh
+	$nano /etc/ssh/sshd_config
+	// Меняем строки
+	#Port 22 => Port 4242
+	// чтобы запретить авторизацию от имени суперпользователя
+	#PermitRootLogin prohibit-password => PermitRootLogin no
+	// Проверяем что ssh включен
+	sudo service ssh status
+	systemctl status ssh
 
-5. 	ROOT-ПРАВА ПОЛЬЗОВАТЕЛЮ
+#### 3. 	ROOT-ПРАВА ПОЛЬЗОВАТЕЛЮ
 
-- // добавляем пользователя
-- $usermod -aG sudo <your_username>
-- // проверяем что пользователь добавлен в группу
-- groups <your_username>
-- getent group sudo
-- // бэкапим конфиг sudo
-- $cp /etc/sudoers /etc/sudoers.backup
-- // правим конфиг sudo
-- $nano /etc/sudoers
-- // добавляем строку с именем пользователя
-- <user>    ALL=(ALL:ALL) ALL
-- // перезагружаемся
-- $reboot
+	// добавляем пользователя
+	$usermod -aG sudo <your_username>
+	// проверяем что пользователь добавлен в группу
+	groups <your_username>
+	getent group sudo
+	// бэкапим конфиг sudo
+	$cp /etc/sudoers /etc/sudoers.backup
+	// правим конфиг sudo
+	$nano /etc/sudoers
+	добавляем строку с именем пользователя
+	<user>    ALL=(ALL:ALL) ALL
+	// перезагружаемся
+	$reboot
 
-6.	ДОСТУП ЧЕРЕЗ ТЕРМИНАЛ
+#### 4.	ДОСТУП ЧЕРЕЗ ТЕРМИНАЛ
 
 - Проброс портов в virtualbox
 - $ssh <user>@localhost -p 4242
@@ -113,7 +113,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 тогда на маке в файле /Users/einterdi/.ssh/known_hosts коментим последине записи наычинающиеся на localhost или 127.0.0.1
 
 
-7.	ФАЙЕРВОЛ
+#### 5.	ФАЙЕРВОЛ
 
 - // устанавливаем ufw
 - $apt install ufw
@@ -129,7 +129,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 - // удаляем порт 22
 - sudo ufw delete (номер строки ненужного порта)
 
-8.	НАСТРОЙКА ВХОДА ПОД SUDO
+#### 6.	НАСТРОЙКА ВХОДА ПОД SUDO
 
 - // логинимся под рутом
 - $su -
@@ -152,7 +152,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 - Defaults        requiret
 - // создаем папку sudo и в ней файл sudo.log
 
-9. ПОЛЬЗОВАТЕЛИ
+#### 7. ПОЛЬЗОВАТЕЛИ
 - // Посмотреть всех пользователей
 - sudo cut -d: -f1 /etc/passwd
 -  lastlog
@@ -168,7 +168,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 - // удалить пользователя из группы
 - sudo gpasswd -d <user> <group>
 
-10. Группы
+#### 8. Группы
 - // Создать группу
 - groupadd <you_group>
 - // Посмотреть группы
@@ -178,10 +178,10 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 - // удалить пользователя из группы
 - gpasswd -d <you_user> <you_group>
 
-ЧАСТЬ III 
-СКРИПТ
+## ЧАСТЬ III 
+#### СКРИПТ
 
-СОЗДАНИЕ СКРИПТА
+#### 1. СОЗДАНИЕ СКРИПТА
 
 - // для утилиты netstat
 - $apt install net-tools
@@ -192,8 +192,22 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 - $nano monitoring.sh
 - // скрипт c командами файле monitoring.sh
 
+	#!/bin/bash
+	wall $'#Architecture:' `uname -a` \
+	$'\n#CPU physical : '`nproc` \
+	$'\n#vCPU :' `cat /proc/cpuinfo | grep processor | wc -l` \
+	$'\n#Memory Usage:' `free -m | grep Mem | awk '{printf "%d/%d (%.1f%%)", $3, $2, $3*100/$2}'` \
+	$'\n#Disk Usage: '`df -h | grep root | awk '{print $3"/"$2" ("$5")"}'` \
+	$'\n#CPU load: '`cat /proc/loadavg | awk '{printf "%.1f%%", $1}'` \
+	$'\n#Last boot:' `who -b | awk '{print $3" "$4}'` \
+	$'\n#LVM use:' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \
+	$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` "ESTABLISHED" \
+	$'\n#User log:' `who | wc -l` \
+	$'\nNetwork: IP' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \
+	$'\n#Sudo :' `cat /var/log/sudo/sudo.log | grep COMMAND | wc -l` "cmd"
 
-НАСТРОЙКА CRON
+
+#### 2. НАСТРОЙКА CRON
 - // добавляем скрипт в расписание (кадые 10 мин)
 - $crontab -e
 - */10 * * * *  /usr/local/bin/monitoring.sh
@@ -201,11 +215,11 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 - #* * * * * /usr/local/bin/monitoring.sh
 - #* * * * * ( sleep 30 ; /usr/local/bin/monitoring.sh )
   
-  ЧАСТЬ IV
+  ## ЧАСТЬ IV
   
-  ЗАЩИТА
+  #### ЗАЩИТА
   
-  1) Как работает виртуальная машина.
+ 1) Как работает виртуальная машина.
 2) Выбор операционки.
 3) Базовые отличия между CentOS и Debian.
 4) Смысл (цель) использования виртуальных машин.
