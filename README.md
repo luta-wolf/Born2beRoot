@@ -100,6 +100,8 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	$cp /etc/sudoers /etc/sudoers.backup
 	// правим конфиг sudo
 	$nano /etc/sudoers
+	// или
+	$ sudo visudo
 	добавляем строку с именем пользователя
 	<user>    ALL=(ALL:ALL) ALL
 	// перезагружаемся
