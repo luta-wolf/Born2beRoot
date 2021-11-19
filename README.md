@@ -167,7 +167,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	// удалить пользователя из группы
 	sudo gpasswd -d <user> <group>
 
-#### 8. Группы
+#### 8. ГРУППЫ
 	// Создать группу
 	groupadd <you_group>
 	// Посмотреть группы
@@ -196,6 +196,11 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	// меняем пароли пользователей в соответствии с политикой
 	$passwd user
 	$passwd root	
+	
+#### 9.	СМЕНА ИМЕНИ ХОСТА
+	// в этих файлах меняем 
+	$nano /etc/hosts
+	$nano /etc/hostname
 
 ## ЧАСТЬ III 
 #### СКРИПТ
