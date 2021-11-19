@@ -314,9 +314,9 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	$ufw allow 20
 	// пробрасываем порт 20
 	// запускаем ftp-сервер:
-	$/etc/init.d/vsftpd start
+	$service vsftpd start
 	// проверяем что всё получилось:
-	$/etc/init.d/vsftpd status
+	$service vsftpd status
   
   ## ЧАСТЬ
   #### ПОЛЕЗНОЕ
