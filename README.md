@@ -325,7 +325,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	// проверяем что всё получилось:
 	$service vsftpd status
   
-  ## ЧАСТЬ X
+  ## ЧАСТЬ V
   #### ПОЛЕЗНОЕ
   	service --status-all // - показывает работу всех сервисов
 	passwd -S <user>     // - посмотреть политику паролей для данного пользователя
@@ -333,7 +333,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	htop			// - красивое визуализация работы компьютера
 	aptitude		// - Aptitude (aptitude moo / aptitude -v moo / - пасхалки для Aptitude)
   
-  ## ЧАСТЬ V
+  ## ЧАСТЬ VI
   #### ЗАЩИТА
   
 1) Как работает виртуальная машина.
