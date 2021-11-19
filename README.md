@@ -292,7 +292,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	$wget https://ru.wordpress.org/latest-ru_RU.tar.gz
 	// копируем его в папку сервера
 	$cp latest-ru_RU.tar.gz /var/www/html/
-	// распаковываем
+	// перехдим в папку /var/www/html/ и там распаковываем
 	$tar -xvzf latest-ru_RU.tar.gz
 
 #### 5.	ПРАВА ПАПКАМ
