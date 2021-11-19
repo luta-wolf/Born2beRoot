@@ -232,7 +232,97 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	#* * * * * /usr/local/bin/monitoring.sh
 	#* * * * * ( sleep 30 ; /usr/local/bin/monitoring.sh )
   
-  ## ЧАСТЬ IV
+   ## ЧАСТЬ IV
+  #### БOНУСЫ
+  	
+#### 1.	УСТАНОВКА СЕРВЕРА
+	$apt install lighttpd
+	// смотрим порты
+	$nano /etc/lighttpd/lighttpd.conf
+	// разрешаем доступ по порту сервера
+	$ufw allow 80
+	$ufw allow 8080
+	Пробрасываем порты в virtualbox
+	Заходим в браузере по ip
+	127.0.0.1
+
+#### 1.	УСТАНОВКА БАЗЫ ДАННЫХ
+	// входим под рутом
+	$su -
+	// настраиваем MariaDB:
+	$apt install mariadb-server - установка
+	$mysql_secure_installation - настройка (везде yes, кроме установки пароля рута и в первом запросе нажать Enter)
+	// входим в оболочку MariaDB
+	$mariadb
+	// создаём базу
+	>CREATE DATABASE wordpress;
+	// создаём пользователия для дб
+	>CREATE USER '<user>'@'localhost' IDENTIFIED BY 'password';
+	// предоставляем пользователю полные привелегии для дб
+	>GRANT ALL ON wordpress.* TO '<user>'@'localhost';
+	>FLUSH PRIVILEGES;
+	>exit
+	// проверка юзера
+	$mariadb -u <user> -p
+	// проверка бд
+	>SHOW DATABASES;
+
+#### 3.	УСТАНОВКА PHP
+	// ставим php
+	$apt install php php-cgi php-mysql
+	// запускам север в режиме fastcgi
+	$lighty-enable-mod fastcgi
+	// подключаем к сереверу php
+	$lighty-enable-mod fastcgi-php
+	// перезагружаем сервис
+	$service lighttpd force-reload
+
+
+#### 4.	УСТАНОВКА WORDPRESS
+	// заходим под рут
+	$su -
+	// скачиваем вордпресс
+	$wget https://ru.wordpress.org/latest-ru_RU.tar.gz
+	// копируем его в папку сервера
+	$cp latest-ru_RU.tar.gz /var/www/html/
+	// распаковываем
+	$tar -xvzf latest-ru_RU.tar.gz
+
+#### 5.	ПРАВА ПАПКАМ
+	// меняем владельца папки с вордпрессом
+	$chown -R www-data:www-data /var/www/html/wordpress
+	// применяем правильные права для всех папок и файлов
+	$find /var/www/html/wordpress -type d -exec chmod 750 {} \;
+	$find /var/www/html/wordpress -type f -exec chmod 640 {} \;
+
+#### 6.	УСТАНОВКА WP
+	// заходим через браузер:
+	http://127.0.0.1/wordpress
+	// настраиваем и наслаждаемся)
+
+#### 7.	ДОПОЛНИТЕЛЬНЫЙ СЕРВИС: VSFTPD
+	// устанавливаем
+	$apt install vsftpd
+	// останавливаем
+	$service vsftpd stop
+	// правим конфиг
+	$nano /etc/vsftpd.conf
+	// раскомментировать
+	write_enable=YES
+	chroot_local_user=YES
+	// разрешаем порт
+	$ufw allow 20
+	// пробрасываем порт 20
+	// запускаем ftp-сервер:
+	$/etc/init.d/vsftpd start
+	// проверяем что всё получилось:
+	$/etc/init.d/vsftpd status
+  
+  ## ЧАСТЬ
+  #### ПОЛЕЗНОЕ
+  	service --status-all // - показывает работу всех сервисов
+  
+  ## ЧАСТЬ V
   #### ЗАЩИТА
   
 1) Как работает виртуальная машина.
