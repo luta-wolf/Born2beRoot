@@ -325,10 +325,11 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	// проверяем что всё получилось:
 	$service vsftpd status
   
-  ## ЧАСТЬ
+  ## ЧАСТЬ X
   #### ПОЛЕЗНОЕ
   	service --status-all // - показывает работу всех сервисов
 	passwd -S <user>     // - посмотреть политику паролей для данного пользователя
+	aa-status		// - статус AppArmor
   
   ## ЧАСТЬ V
   #### ЗАЩИТА
