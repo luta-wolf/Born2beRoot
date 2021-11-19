@@ -153,45 +153,65 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 - // создаем папку sudo и в ней файл sudo.log
 
 #### 7. ПОЛЬЗОВАТЕЛИ
-- // Посмотреть всех пользователей
-- sudo cut -d: -f1 /etc/passwd
--  lastlog
-- // Создать пользователя
-- sudo adduser <user> //
-- sudo useradd <user> // создает пользователя без папки в директории /home
-- // Посмотреть в каких группах пользователь
-- id -Gn <user>
-- grops <user>
-- // Удалить пользователя
-- sudo deluser <user>
-- sudo userdel <user>
-- // удалить пользователя из группы
-- sudo gpasswd -d <user> <group>
+	// Посмотреть всех пользователей
+	sudo cut -d: -f1 /etc/passwd
+	lastlog
+	// Создать пользователя
+	sudo adduser <user> //
+	sudo useradd <user> // создает пользователя без папки в директории /home
+	// Посмотреть в каких группах пользователь
+	id -Gn <user>
+	grops <user>
+	// Удалить пользователя
+	sudo deluser <user>
+	sudo userdel <user>
+	// удалить пользователя из группы
+	sudo gpasswd -d <user> <group>
 
 #### 8. Группы
-- // Создать группу
-- groupadd <you_group>
-- // Посмотреть группы
-- getent group
-- // добаваить пользователя в группу
-- usermod -aG <you_group> <you_user>
-- // удалить пользователя из группы
-- gpasswd -d <you_user> <you_group>
+	// Создать группу
+	groupadd <you_group>
+	// Посмотреть группы
+	getent group
+	// добаваить пользователя в группу
+	usermod -aG <you_group> <you_user>
+	// удалить пользователя из группы
+	gpasswd -d <you_user> <you_group>
+	
+#### 9.	ПОЛИТИКА ПАРОЛЕЙ
+	// устанавливаем утилиту политики
+	$apt-get install libpam-pwquality
+	// правим файл политики паролей
+	%nano /etc/login.defs
+	// меняем значения строк как здесь:
+	PASS_MAX_DAYS 30
+	PASS_MIN_DAYS 2
+	PASS_WARN_AGE 7
+	// на всякий пожарный бэкапим конфиг
+	$cp /etc/pam.d/common-password /etc/pam.d/common-password.backup
+	// правим конфиг
+	$nano /etc/pam.d/common-password
+	// дописываем в эту строку следующим образом:
+	password        requisite	pam_pwquality.so retry=3 maxrepeat=3 minlen=10 dcredit=-1 ucredit=-1 lcredit=-1 usercheck=1 difok=7
+	password        requisite	pam_pwquality.so retry=3 maxrepeat=3 minlen=10 dcredit=-1 ucredit=-1 lcredit=-1 enforce_for_root
+	// меняем пароли пользователей в соответствии с политикой
+	$passwd user
+	$passwd root	
 
 ## ЧАСТЬ III 
 #### СКРИПТ
 
 #### 1. СОЗДАНИЕ СКРИПТА
+	// для утилиты netstat
+	$apt install net-tools
+	$su -
+	$cd /usr/local/bin/
+	$touch monitoring.sh
+	$chmod +x ./monitoring.sh
+	$nano monitoring.sh
+	// скрипт c командами файле monitoring.sh
 
-- // для утилиты netstat
-- $apt install net-tools
-- $su -
-- $cd /usr/local/bin/
-- $touch monitoring.sh
-- $chmod +x ./monitoring.sh
-- $nano monitoring.sh
-- // скрипт c командами файле monitoring.sh
-
+#### 2. СКРИПТ
 	#!/bin/bash
 	wall $'#Architecture:' `uname -a` \
 	$'\n#CPU physical : '`nproc` \
@@ -207,7 +227,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	$'\n#Sudo :' `cat /var/log/sudo/sudo.log | grep COMMAND | wc -l` "cmd"
 
 
-#### 2. НАСТРОЙКА CRON
+#### 3. НАСТРОЙКА CRON
 - // добавляем скрипт в расписание (кадые 10 мин)
 - $crontab -e
 - */10 * * * *  /usr/local/bin/monitoring.sh
