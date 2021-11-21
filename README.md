@@ -176,6 +176,10 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	usermod -aG <you_group> <you_user>
 	// удалить пользователя из группы
 	gpasswd -d <you_user> <you_group>
+	// добавить кошку
+	adduser cat
+	//поместить кошку в дом
+	adduser cat home
 	
 #### 9.	ПОЛИТИКА ПАРОЛЕЙ
 	// устанавливаем утилиту политики
