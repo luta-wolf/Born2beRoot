@@ -331,8 +331,9 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
   
   ## ЧАСТЬ V
   #### ПОЛЕЗНОЕ
-  	service --status-all // - показывает работу всех сервисов
-	passwd -S <user>     // - посмотреть политику паролей для данного пользователя
+  	service --status-all	// - показывает работу всех сервисов
+	passwd -S <user>	// - посмотреть политику паролей для данного пользователя
+	chage -l <user>		// - посмотреть политику паролей для данного пользователя
 	aa-status		// - статус AppArmor
 	htop			// - красивое визуализация работы компьютера
 	aptitude		// - Aptitude (aptitude moo / aptitude -v moo / - пасхалки для Aptitude)
