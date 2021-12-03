@@ -199,7 +199,9 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	password        requisite	pam_pwquality.so retry=3 maxrepeat=3 minlen=10 dcredit=-1 ucredit=-1 lcredit=-1 enforce_for_root
 	// меняем пароли пользователей в соответствии с политикой
 	$passwd user
-	$passwd root	
+	$passwd root
+	// chage -l user просмотр состояния
+        // chage -M 30 -m 2 -W 7 user изменить состояние
 	
 #### 9.	СМЕНА ИМЕНИ ХОСТА
 	// в этих файлах меняем 
