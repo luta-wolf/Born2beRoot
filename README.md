@@ -1,6 +1,5 @@
 # Born2beRoot
-![image](https://user-images.githubusercontent.com/58044383/144758104-f8f69ba1-6c9e-4a20-8d5d-b04733e7b788.png)
-
+![image](https://user-images.githubusercontent.com/58044383/144758133-566ea497-901f-4497-8113-e9d0e06b1fa7.png)
 
 Сабжект: https://cdn.intra.42.fr/pdf/pdf/31621/en.subject.pdf
 
