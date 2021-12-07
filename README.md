@@ -107,7 +107,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	<user>    ALL=(ALL:ALL) ALL
 	// перезагружаемся
 	$reboot
-	![image](https://user-images.githubusercontent.com/58044383/145056006-5ff1f686-362d-4d6a-86ea-c9502390ec1e.png)
+![image](https://user-images.githubusercontent.com/58044383/145056006-5ff1f686-362d-4d6a-86ea-c9502390ec1e.png)
 
 
 #### 4.	ДОСТУП ЧЕРЕЗ ТЕРМИНАЛ
