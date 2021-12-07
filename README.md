@@ -1,5 +1,7 @@
 # Born2beRoot
 ![image](https://user-images.githubusercontent.com/58044383/144758133-566ea497-901f-4497-8113-e9d0e06b1fa7.png)
+[![einterdi's 42Project Score](https://badge42.herokuapp.com/api/project/einterdi/ft_printf)](https://github.com/JaeSeoKim/badge42)
+
 
 Сабжект: https://cdn.intra.42.fr/pdf/pdf/31621/en.subject.pdf
 
