@@ -199,12 +199,10 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	$nano /etc/pam.d/common-password
 	// дописываем в эту строку следующим образом:
 	password requisite pam_pwquality.so minlen=10 ucredit=-1 lcredit=-1 \
-	dcredit=-1 maxrepeat=3 retry=3 usercheck=1 enforce_for_root // rules for root
-
+	dcredit=-1 maxrepeat=3 retry=3 usercheck=1 enforce_for_root // правила для root
 	password requisite pam_pwquality.so minlen=10 ucredit=-1 lcredit=-1 \
-	dcredit=-1 maxrepeat=3 retry=3 usercheck=1 difok=7 // rules for all users
-	password        requisite	pam_pwquality.so retry=3 maxrepeat=3 minlen=10 dcredit=-1 ucredit=-1 lcredit=-1 	usercheck=1 difok=7
-	password        requisite	pam_pwquality.so retry=3 maxrepeat=3 minlen=10 dcredit=-1 ucredit=-1 lcredit=-1 	enforce_for_root
+	dcredit=-1 maxrepeat=3 retry=3 usercheck=1 difok=7 // правила для всех users
+	
 	// меняем пароли пользователей в соответствии с политикой
 	$passwd user
 	$passwd root
