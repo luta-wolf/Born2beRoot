@@ -345,8 +345,10 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	passwd -S <user>	// - посмотреть политику паролей для данного пользователя
 	chage -l <user>		// - посмотреть политику паролей для данного пользователя
 	aa-status		// - статус AppArmor
-	htop			// - красивое визуализация работы компьютера
-	aptitude		// - Aptitude (aptitude moo / aptitude -v moo / - пасхалки для Aptitude)
+	htop			// - посмотреть ве процессы запущенные на компьютера
+	aptitude		// - Aptitude (aptitude moo / aptitude -v moo / (далее прибавляем v) / - пасхалки для Aptitude)
+	hostname		// - посмотреть хостнэйм школьной машины
+	ssh elerika@va-b1.kzn.21-school.ru -p 4242	// зайтий с любого компа школы на твой Born2BeRoot
   
   ## ЧАСТЬ VI
   #### ЗАЩИТА
