@@ -344,6 +344,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
   	service --status-all	// - показывает работу всех сервисов
 	passwd -S <user>	// - посмотреть политику паролей для данного пользователя
 	chage -l <user>		// - посмотреть политику паролей для данного пользователя
+	chage -M 30 <user>	// - поменять на 30 дней до истечения срока пароля старым юзерам
 	aa-status		// - статус AppArmor
 	htop			// - посмотреть ве процессы запущенные на компьютера
 	aptitude		// - Aptitude (aptitude moo / aptitude -v moo / (далее прибавляем v) / - пасхалки для Aptitude)
