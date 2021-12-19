@@ -338,6 +338,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	$service vsftpd start
 	// проверяем что всё получилось:
 	$service vsftpd status
+	// настройка ftp сервера https://linoxide.com/how-to-install-vsftpd-ftp-server-on-debian/
   
   ## ЧАСТЬ V
   #### ПОЛЕЗНОЕ
