@@ -165,7 +165,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	sudo useradd <user> // создает пользователя без папки в директории /home
 	// Посмотреть в каких группах пользователь
 	id -Gn <user>
-	grops <user>
+	groups <user>
 	// Удалить пользователя
 	sudo deluser <user>
 	sudo userdel <user>
@@ -215,6 +215,12 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	// в этих файлах меняем 
 	$nano /etc/hosts
 	$nano /etc/hostname
+	// способ N2
+	$sudo hostnamectl set-hostname <new_name>
+	// просмотр текущего hostname
+	$hostname
+	// или расширенную версию
+	$hostnamectl
 
 ## ЧАСТЬ III 
 #### СКРИПТ
