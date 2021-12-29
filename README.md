@@ -153,7 +153,7 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	// прописываем путь где будет фиксироваться все команды с sudo
 	Defaults        logfile="/var/log/sudo/sudo.log"
 	Defaults        log_input, log_output
-	Defaults        requiret
+	Defaults        requiretty
 	// создаем папку sudo и в ней файл sudo.log
 
 #### 7. ПОЛЬЗОВАТЕЛИ
@@ -238,11 +238,11 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 #### 2. СКРИПТ
 	#!/bin/bash
 	wall $'#Architecture:' `uname -a` \
-	$'\n#CPU physical : '`nproc` \
+	$'\n#CPU physical: '`grep "physical id" /proc/cpuinfo | sort | uniq | wc -l` \
 	$'\n#vCPU :' `cat /proc/cpuinfo | grep processor | wc -l` \
 	$'\n#Memory Usage:' `free -m | grep Mem | awk '{printf "%d/%d (%.1f%%)", $3, $2, $3*100/$2}'` \
 	$'\n#Disk Usage: '`df -h | grep root | awk '{print $3"/"$2" ("$5")"}'` \
-	$'\n#CPU load: '`cat /proc/loadavg | awk '{printf "%.1f%%", $1}'` \
+	$'\n#CPU Load: '`top -bn1 | grep load | awk '{printf "%.1f%%\n", $1}'` \
 	$'\n#Last boot:' `who -b | awk '{print $3" "$4}'` \
 	$'\n#LVM use:' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \
 	$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` "ESTABLISHED" \
@@ -255,7 +255,9 @@ https://help.ubuntu.ru/wiki/руководство_по_ubuntu_server/безоп
 	// добавляем скрипт в расписание (кадые 10 мин)
 	$crontab -e
 	*/10 * * * *  /usr/local/bin/monitoring.sh
-	// если чере 30 сек то
+	// если на минуту то убираем 0
+	*/1 * * * *  /usr/local/bin/monitoring.sh
+	// если чере 30 сек то (Внимание этого в чекере нет, эта информация для общего развития)
 	#* * * * * /usr/local/bin/monitoring.sh
 	#* * * * * ( sleep 30 ; /usr/local/bin/monitoring.sh )
   
